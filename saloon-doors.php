@@ -14,9 +14,6 @@
     margin-bottom: 40px;
     float: left;
     -webkit-perspective: 800px; 
-       -moz-perspective: 800px;
-         -o-perspective: 800px;
-            perspective: 800px;
   }
   .container1 {
     margin-left: 160px; 
@@ -27,55 +24,31 @@
     height: 100%;
     position: absolute;
     -webkit-transition: -webkit-transform 1s;
-       -moz-transition: -moz-transform 1s;
-         -o-transition: -o-transform 1s;
-            transition: transform 1s;
-    -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-         -o-transform-style: preserve-3d;
-            transform-style: preserve-3d; 
+    -webkit-transform-style: preserve-3d; 
   }
   
   #left-door {
-    -webkit-transform-origin: left center;
-       -moz-transform-origin: left center;
-         -o-transform-origin: left center;
-            transform-origin: left center; 
+    -webkit-transform-origin: left center; 
   }
   
   #right-door {
-    -webkit-transform-origin: right center;
-       -moz-transform-origin: right center;
-         -o-transform-origin: right center;
-            transform-origin: right center; 
+    -webkit-transform-origin: right center; 
   }
 
   #left-door.out {
     -webkit-transform: rotateY( 180deg );
-       -moz-transform: rotateY( 180deg );
-         -o-transform: rotateY( 180deg );
-            transform: rotateY( 180deg );
   }
   
   #right-door.out {
     -webkit-transform: rotateY( -180deg );
-       -moz-transform: rotateY( -180deg );
-         -o-transform: rotateY( -180deg );
-            transform: rotateY( -180deg );
   }
   
   #left-door.in {
     -webkit-transform: rotateY( -180deg );
-       -moz-transform: rotateY( -180deg );
-         -o-transform: rotateY( -180deg );
-            transform: rotateY( -180deg );
   }
   
   #right-door.in {
     -webkit-transform: rotateY( 180deg );
-       -moz-transform: rotateY( 180deg );
-         -o-transform: rotateY( 180deg );
-            transform: rotateY( 180deg );
   }
 
   #left-door figure, #right-door figure {
@@ -89,9 +62,6 @@
     font-size: 140px;
     position: absolute;
     -webkit-backface-visibility: hidden;
-       -moz-backface-visibility: hidden;
-         -o-backface-visibility: hidden;
-            backface-visibility: hidden;
   }
 
   #left-door .front, #right-door .front {
@@ -101,40 +71,31 @@
   #left-door .back {
     background: blue;
     -webkit-transform: rotateY( 180deg );
-       -moz-transform: rotateY( 180deg );
-         -o-transform: rotateY( 180deg );
-            transform: rotateY( 180deg );
   }
   #right-door .back {
     background: blue;
     -webkit-transform: rotateY( -180deg );
-       -moz-transform: rotateY( -180deg );
-         -o-transform: rotateY( -180deg );
-            transform: rotateY( -180deg );
   }
 </style>
 
 <script>
   var init = function() {
-    var left = document.getElementById('left-door'),
-        right = document.getElementById('right-door');
+    var left = document.querySelector('#left-door'),
+        right = document.querySelector('#right-door');
     
-    document.getElementById('out').addEventListener( 'click', function(){
-      if (left.hasClassName('in')) {
-        left.removeClassName('in');
-        right.removeClassName('in');
-      }
-      left.toggleClassName('out');
-      right.toggleClassName('out');
+    document.querySelector('#out').addEventListener( 'click', function(){
+      left.style.webkitTransform = 'rotateY( 180deg )';
+	  right.style.webkitTransform = 'rotateY( -180deg )';
     }, false);
     
-    document.getElementById('in').addEventListener( 'click', function(){
-      if (left.hasClassName('out')) {
-        left.removeClassName('out');
-        right.removeClassName('out');
-      }
-      left.toggleClassName('in');
-      right.toggleClassName('in');
+    document.querySelector('#in').addEventListener( 'click', function(){
+      left.style.webkitTransform = 'rotateY( -180deg )';
+	  right.style.webkitTransform = 'rotateY( 180deg )';
+    }, false);
+	
+	document.querySelector('#close').addEventListener( 'click', function(){
+      left.style.webkitTransform = 'rotateY( 0deg )';
+	  right.style.webkitTransform = 'rotateY( 0deg )';
     }, false);
   };
   
@@ -163,6 +124,7 @@
   <section id="options">
     <p><button id="in">Coming In</button></p>
     <p><button id="out">Going Out</button></p>
+    <p><button id="close">Close</button></p>
   </section>
 
 </body>

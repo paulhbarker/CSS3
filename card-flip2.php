@@ -12,36 +12,16 @@
     position: relative;         
     margin: 0 auto 40px;
     border: 1px solid #CCC;
-    
-    -webkit-perspective: 800px; 
-       -moz-perspective: 800px;
-         -o-perspective: 800px;
-            perspective: 800px;
+    -webkit-perspective: 800px;
   }
 
   #card {
     width: 100%;
     height: 100%;
     position: absolute;
-    -webkit-transition: -webkit-transform 1s;
-       -moz-transition: -moz-transform 1s;
-         -o-transition: -o-transform 1s;
-            transition: transform 1s;
+	-webkit-transition: -webkit-transform 1s;
     -webkit-transform-style: preserve-3d;
-       -moz-transform-style: preserve-3d;
-         -o-transform-style: preserve-3d;
-            transform-style: preserve-3d;
     -webkit-transform-origin: right center;
-       -moz-transform-origin: right center;
-         -o-transform-origin: right center;
-            transform-origin: right center;
-  }
-
-  #card.flipped {
-    -webkit-transform: translateX( -100% ) rotateY( -180deg );
-       -moz-transform: translateX( -100% ) rotateY( -180deg );
-         -o-transform: translateX( -100% ) rotateY( -180deg );
-            transform: translateX( -100% ) rotateY( -180deg );
   }
 
   #card figure {
@@ -55,9 +35,6 @@
     font-size: 140px;
     position: absolute;
     -webkit-backface-visibility: hidden;
-       -moz-backface-visibility: hidden;
-         -o-backface-visibility: hidden;
-            backface-visibility: hidden;
   }
 
   #card .front {
@@ -67,20 +44,22 @@
   #card .back {
     background: blue;
     -webkit-transform: rotateY( 180deg );
-       -moz-transform: rotateY( 180deg );
-         -o-transform: rotateY( 180deg );
-            transform: rotateY( 180deg );
   }
 </style>
 
 <script>
   var init = function() {
-    var card = document.getElementById('card');
+    var card = document.querySelector('#card');
     
-    document.getElementById('flip').addEventListener( 'click', function(){
-      card.toggleClassName('flipped');
+    document.querySelector('#show-back').addEventListener( 'click', function(){
+      card.style.webkitTransform = 'translateX( -100% ) rotateY( -180deg )';
+    }, false);
+	
+	document.querySelector('#show-front').addEventListener( 'click', function(){
+      card.style.webkitTransform = 'translateX( 0% ) rotateY( 0deg )';
     }, false);
   };
+
   
   window.addEventListener('DOMContentLoaded', init, false);
 </script>
@@ -98,7 +77,8 @@
   </section>
   
   <section id="options">
-    <p><button id="flip">Flip Card</button></p>
+    <p><button id="show-front">Show 1</button></p>
+    <p><button id="show-back">Show 2</button></p>
   </section>
 
 </body>
