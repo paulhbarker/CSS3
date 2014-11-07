@@ -15,6 +15,7 @@
       <li><a href='card-flip2.php'>Card Flip 2</a></li>
       <li><a href='saloon-doors.php'>Card Flip Saloon Doors</a></li>
       <li><a href='cube.php'>Cube</a></li>
+      <li><a href='transition-styles.php'>Transition Styles</a></li>
     </ul>
   </nav>
 </body>
